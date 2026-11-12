@@ -101,3 +101,49 @@ efi-r<N>-<关键词>/
 - `r<N>` 递增，不复用；
 - 关键词写「这一版的主变量」，例如 `layout`（音频）、`gpu`（显示）、`clean`（发布清理）；
 - **失败版本也保留**，它们是 `troubleshooting.md` 的证据来源。
+
+---
+
+## 发版流程（以后每个版本照这个走）
+
+1. **改完先自检**：`./scripts/verify-efi.sh EFI` —— 必须全绿，不然别往下走。
+2. **在本文档顶部加一段** `## rNN — 日期 · 主题`（保持倒序），写清三件事：
+   改了什么 / 验证了什么 / 已知问题有没有变化。
+3. **跑发版脚本**：
+
+   ```bash
+   ./scripts/release.sh rNN vX.Y.Z
+   ```
+
+   它会自动：重跑 `verify-efi.sh` → 打 `dist/EFI-fujitsu-u9310x-rNN.zip` →
+   生成 `.sha256` → 建本地 annotated tag → 打印剩下的手动步骤。
+4. **推代码 + 推标签**：
+
+   ```bash
+   git push origin main
+   git push origin vX.Y.Z
+   ```
+5. **网页发 Release**（本机 HTTPS 443 不通、也没装 `gh`，只能用浏览器）：
+   - Tag 选刚推的 `vX.Y.Z`
+   - 附件：`EFI-fujitsu-u9310x-rNN.zip` 和同名 `.sha256`
+   - Notes：把第 2 步写的那段粘进去，末尾补一行
+     「完整记录见 [`docs/changelog.md`](https://github.com/MemoryPX12138/fujitsu-u9310x-hackintosh/blob/main/docs/changelog.md)」
+6. 勾 **Set as the latest release** → Publish。
+
+### 版本号约定
+
+| 层 | 用在哪 | 例子 |
+|---|---|---|
+| `rNN` | 内部构建序号：目录名、zip 名、changelog 小节 | `r17` |
+| `vX.Y.Z` | git tag / GitHub Release | `v1.0.0` |
+
+- 只改文档或脚本 → **不发版**，直接 `git commit` + `git push`；
+- 改了 EFI 且要给别人用 → **发版**（走上面 6 步）；
+- 破坏性改动（换机型、换 macOS 大版本）→ `v2.0.0`。
+
+### Release notes 必须包含
+
+- **适用形态**：仅「无头骑士」（无内屏 / 无电池 / 无摄像头），原装笔记本功能未适配；
+- `config.plist` 的 SHA-256（`shasum -a 256 EFI/OC/config.plist`）；
+- Release 附件 zip 的 SHA-256；
+- 本次新增 / 修复 / **已知未修复**（尤其 3.5mm 耳机切换、bluetoothd 全量升级这两条）。
