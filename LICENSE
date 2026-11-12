@@ -1,0 +1,43 @@
+MIT License
+
+Copyright (c) 2026 fujitsu-u9310x-hackintosh contributors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+# 第三方组件声明 / Third-party notices
+
+本 MIT 许可**只覆盖本仓库的文档与脚本**（`README.md`、`docs/`、`scripts/`）。
+
+`EFI/` 目录内的二进制与资源各自遵循上游许可，版权归原作者所有，此处仅作
+「在本机验证可用的组合」再分发：
+
+| 组件 | 许可 | 上游 |
+|---|---|---|
+| OpenCore / OpenRuntime / OpenCanopy / HfsPlus / OpenShell / CleanNvram | BSD-3-Clause | Acidanthera / OpenCore |
+| Lilu / VirtualSMC / WhateverGreen / AppleALC / RestrictEvents / NVMeFix / CpuTscSync / BrightnessKeys / CPUFriend / HibernationFixup / ECEnabler / AirportBrcmFixup / BrcmPatchRAM / BlueToolFixup | MIT / BSD-3-Clause | Acidanthera 及各自作者 |
+| IntelMausi | GPL-2.0 | Acidanthera (mieze) |
+| IntelBluetoothFirmware / IntelBTPatcher / itlwm / AirportItlwm | GPL-2.0 | zxystd / OpenIntelWireless |
+| VoodooPS2Controller / VoodooI2C | GPL-2.0 | Acidanthera / alexandred |
+| VerbStub | 第三方闭源（`com.XPS.VerbStub`） | 原作者 |
+| SMBIOS / ACPI 模板 | 公有领域 / 上游示例 | Dortania 等 |
+
+如果你的项目要再分发 `EFI/`，请保留上述组件的版权与许可文件；
+不想承担这部分义务，就只引用 `docs/`，让使用者自己去下 kext。

@@ -1,0 +1,41 @@
+# macOS
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+.fseventsd
+
+# 构建/测试产物（体积大，不进仓库）
+dist/
+dl/
+work/
+out/
+backup/
+logs/
+
+# 压缩包（原始 EFI 用目录树提交，不要交错提交 zip）
+*.zip
+*.7z
+*.dmg
+*.pkg
+
+# 安装镜像与提取物
+*.cdr
+*.iso
+*.sparsebundle
+*.ipsw
+
+# Python
+__pycache__/
+*.pyc
+
+# 编辑器
+.vscode/
+.idea/
+*.swp
+
+# 本机个人数据（绝对不能提交）
+diag*.txt
+*personal*
+*serial*
+SMBIOS-*.txt
